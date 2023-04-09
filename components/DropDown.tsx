@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 interface Iitem {
@@ -9,7 +9,7 @@ interface Iitem {
   setDefaultItem: any;
 }
 
-export default function AccordionBox(item: Iitem) {
+export default function DropDown(item: Iitem) {
   return (
     <div className="flex w-1/4 flex-col rounded-lg border bg-white">
       <motion.header
@@ -31,7 +31,6 @@ export default function AccordionBox(item: Iitem) {
           />
         </motion.div>
       </motion.header>
-
       <AnimatePresence initial={false}>
         {item.isOpen && (
           <motion.div
@@ -45,15 +44,15 @@ export default function AccordionBox(item: Iitem) {
             }}
             transition={{ duration: 0.6, ease: [0.04, 0.62, 0.23, 0.98] }}
           >
-            <div className="flex flex-col space-y-4 p-4">
+            <div className="flex flex-col space-y-4 p-4 ">
               {item.data.map((ele: any) => (
                 <span
                   className={`${
-                    ele.title === item.defaultItem && "text-base font-black"
+                    ele.title === item.defaultItem && ", text-base font-black"
                   }`}
                   onClick={() => {
-                    item.setDefaultItem(ele.title);
                     item.setIsOpen(false);
+                    item.setDefaultItem(ele.title);
                   }}
                 >
                   {ele.title}
